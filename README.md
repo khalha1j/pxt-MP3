@@ -1,38 +1,33 @@
-# dfplayer
-這是專為micro:bit提供的MP3播放積木\
-This is the package to play MP3 by using micro:bit attached DFPlayer mini
+# PXT MP3 - JQ6500
+Datasheet (English): http://saber.patagoniatec.com/wp-content/uploads/2014/09/JQ6500-voice-Module.pdf
+This is the package to play MP3 by using micro:bit attached JQ6500
 
-## Author
-Liou Zheng-Ji\
-劉正吉\
-[my page, https://sites.google.com/jes.mlc.edu.tw/ljj/](https://sites.google.com/jes.mlc.edu.tw/ljj/)
+## Developed By
+Husain Al-Khalaf
 
 ## Description
-The blocks can let you attch DFPlayer Mini to micro:bit, let the micro:bit play MP3 music.
+The blocks can let you attch JQ6500 to micro:bit, let the micro:bit play MP3 files (music, effects, ...etc).
 
 ## Video1
-[![click here to see the sample video](https://img.youtube.com/vi/ql-_ZhzFF68/0.jpg)](https://www.youtube.com/watch?v=ql-_ZhzFF68)
-
-## Video2
-[![click here to see the sample video](https://img.youtube.com/vi/ahkVE9Gdb_s/0.jpg)](https://www.youtube.com/watch?v=ahkVE9Gdb_s)
+.............
 
 ## Circuit
-![image](images/schema.png)
+...........
 
 ## The filesystem in the microSD card
 ![image](images/filesystem.jpg)
 
 ## The MP3 player blocks
-![image](images/blocks.jpg)
+................
+
 
 ## Sample1
-![image](images/sample1.jpg)
+................
 
 ## Sample2
-![image](images/sample2.jpg)
+.......................
 
 ## License
-
 MIT
 
 ## Supported targets
@@ -41,5 +36,7 @@ MIT
 (The metadata above is needed for package search.)
 
 ```package
-dfplayer=github:lioujj/pxt-mp3
+mp3-player=github:khalha1j/pxt-mp3
 ```
+Credits:
+This work is derived from DFPlayer Mini Project by Liou Zheng-Ji
