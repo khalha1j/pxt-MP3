@@ -24,8 +24,8 @@ namespace dfplayer {
     export enum playType {
         //% block="Play"
         type1 = 0x0D,
-        //% block="PlayStopPause"
-        type2 = 0x42,
+        //% block="Pause"
+        type2 = 0x0E,
         //% block="PlayNext"
         type3 = 0x01,
         //% block="PlayPrevious"
