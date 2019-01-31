@@ -17,8 +17,10 @@ namespace dfplayer {
     let para2=0x00
     let highByte=0x00
     let lowByte=0x00
-    let dataArr: number[] = [Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge, para1, para2, highByte, lowByte, End_Byte]
+    let dataArr: number[] = [0x7E, 0x02, 0x0D, 0xEF]
+    //let dataArr: number[] = [Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge, para1, para2, highByte, lowByte, End_Byte]
 
+    
     export enum playType {
         //% block="Play"
         type1 = 0x0D,
@@ -63,6 +65,7 @@ namespace dfplayer {
     }
     //% blockId="execute" block="execute procedure:%myType"
     //% weight=90 blockExternalInputs=true blockGap=20
+    /*
     export function execute(myType: playType):void{
         CMD=myType
         para1=0x00
@@ -73,7 +76,12 @@ namespace dfplayer {
         checkSum()
         sendData()
     }
-
+    */
+export function execute(myType: playType):void{
+        
+        sendData()
+    }
+    
     //% blockId="setTracking" block="play the mp3 on the track:%tracking|repeat:%myAns"
     //% weight=85 blockGap=20 tracking.min=1 tracking.max=255
     export function setTracking(tracking:number,myAns:yesOrNot):void{
@@ -147,8 +155,8 @@ namespace dfplayer {
     }
 
     function sendData():void{
-        let myBuff = pins.createBuffer(10);
-        for(let i=0;i<10;i++){
+        let myBuff = pins.createBuffer(4);
+        for(let i=0;i<4;i++){
             myBuff.setNumber(NumberFormat.UInt8BE, i, dataArr[i])           
         }
         serial.writeBuffer(myBuff)
