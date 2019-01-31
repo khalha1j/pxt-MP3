@@ -78,6 +78,7 @@ namespace dfplayer {
     }
     */
 export function execute(myType: playType):void{
+    //length of dataArr for this function is always 4 bytes ==> [0x7E, 0x02, playType, 0xEF]
         CMD=myType
         dataArr[2]=CMD
         sendData()
@@ -156,8 +157,8 @@ export function execute(myType: playType):void{
     }
 
     function sendData():void{
-        let myBuff = pins.createBuffer(4);
-        for(let i=0;i<4;i++){
+        let myBuff = pins.createBuffer(6);
+        for(let i=0;i<6;i++){
             myBuff.setNumber(NumberFormat.UInt8BE, i, dataArr[i])           
         }
         serial.writeBuffer(myBuff)
