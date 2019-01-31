@@ -3,7 +3,7 @@
 */
 
 
-//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player"
+//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-H"
 namespace dfplayer {
     serial.onDataReceived("E", () => {
     })
@@ -17,15 +17,15 @@ namespace dfplayer {
     let para2=0x00
     let highByte=0x00
     let lowByte=0x00
-    let dataArr: number[] = [0x7E, 0x02, 0x0D, 0xEF]
+    let dataArr: number[] = [0x7E, 0x02, CMD, 0xEF]
     //let dataArr: number[] = [Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge, para1, para2, highByte, lowByte, End_Byte]
 
     
     export enum playType {
         //% block="Play"
         type1 = 0x0D,
-        //% block="Stop"
-        type2 = 0x16,
+        //% block="PlayStopPause"
+        type2 = 0x42,
         //% block="PlayNext"
         type3 = 0x01,
         //% block="PlayPrevious"
@@ -78,7 +78,8 @@ namespace dfplayer {
     }
     */
 export function execute(myType: playType):void{
-        
+        CMD=myType
+        dataArr[2]=CMD
         sendData()
     }
     
