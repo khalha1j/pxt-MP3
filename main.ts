@@ -3,7 +3,7 @@
 */
 
 
-//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-H"
+//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-HA"
 namespace dfplayer {
     serial.onDataReceived("E", () => {
     })
