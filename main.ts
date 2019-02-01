@@ -95,14 +95,16 @@ export function execute(myType: playType):void{
     //% weight=85 blockGap=20 tracking.min=1 tracking.max=255
     export function setTracking(tracking:number,myAns:yesOrNot):void{
         //    let dataArr: number[] = [Start_Byte, CMD_Bytes_Count, CMD, highByte, lowByte, End_Byte]
-        CMD=0x03
+        //【7E 04 03 00 01 EF】
+
         CMD_Bytes_Count = 0x04
+        CMD=0x03
         highByte=0x00
         lowByte=tracking
         dataArr[1]=CMD_Bytes_Count
         dataArr[2]=CMD
-        dataArr[4] = highByte
-        dataArr[5] = lowByte
+        dataArr[3] = highByte
+        dataArr[4] = lowByte
         //checkSum()
         sendData()
         execute(0x0D)
