@@ -65,6 +65,8 @@ namespace pinkyo {
         dataArr[8]=lowByte
     }
     
+//% blockId="execute" block="execute procedure:%myType"
+//% weight=90 blockExternalInputs=true blockGap=20
 export function execute(myType: playType):void{
     //length of dataArr for this function is always 4 bytes ==> [0x7E, 0x02, playType, 0xEF]
         Start_Byte = 0x7E
