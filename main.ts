@@ -109,6 +109,8 @@ export function execute(myType: playType):void{
             dataArr[4] = lowByte
             //checkSum()
             sendData()
+                            basic.pause(100)
+
 
         }else{//first set loop mode to single play then stop 【7E 04 03 00 04 EF】
             CMD_Bytes_Count = 0x03
@@ -121,6 +123,8 @@ export function execute(myType: playType):void{
             dataArr[4] = lowByte
             //checkSum()
             sendData()
+                            basic.pause(100)
+
         }
         //【7E 04 03 00 02 EF】   
 
