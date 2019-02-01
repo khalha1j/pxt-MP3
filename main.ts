@@ -1,10 +1,10 @@
 /**
-* DFPlayer mini的函數
+* JQ6500 MP3 Player
 */
 
 
 //% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-HAK2"
-namespace dfplayer {
+namespace pinkyo {
     serial.onDataReceived("E", () => {
     })
     let Start_Byte = 0x7E
