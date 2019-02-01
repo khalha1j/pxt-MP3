@@ -1,7 +1,7 @@
 {
-    "name": "dfplayer",
+    "name": "pinkyo",
     "version": "0.0.1",
-    "description": "這是DFPlayer mini的Makecode專用積木",
+    "description": "pinkyo: JQ6500 MP3 Plyer",
     "license": "MIT",
     "dependencies": {
         "core": "*"
