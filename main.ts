@@ -3,7 +3,7 @@
 */
 
 
-//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-HAK2"
+//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-HAK3"
 namespace pinkyo {
     serial.onDataReceived("E", () => {
     })
