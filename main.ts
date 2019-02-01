@@ -64,20 +64,7 @@ namespace pinkyo {
         dataArr[7]=highByte
         dataArr[8]=lowByte
     }
-    //% blockId="execute" block="execute procedure:%myType"
-    //% weight=90 blockExternalInputs=true blockGap=20
-    /*
-    export function execute(myType: playType):void{
-        CMD=myType
-        para1=0x00
-        para2=0x00
-        dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
-        checkSum()
-        sendData()
-    }
-    */
+    
 export function execute(myType: playType):void{
     //length of dataArr for this function is always 4 bytes ==> [0x7E, 0x02, playType, 0xEF]
         Start_Byte = 0x7E
@@ -146,59 +133,20 @@ export function execute(myType: playType):void{
     }
 
 
-    //% blockId="folderPlay" block="play the mp3 in the folder:%folderNum|filename:%fileNum|repeat:%myAns"
-    //% weight=80 blockGap=20 folderNum.min=1 folderNum.max=99 fileNum.min=1 fileNum.max=255
-    export function folderPlay(folderNum:number, fileNum:number,myAns:yesOrNot):void{
-        CMD=0x0F
-        para1=folderNum
-        para2=fileNum
-        dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
-        checkSum()
-        sendData()
-        if (myAns==1)
-           execute(0x19)
-    }
-
-    //% blockId="setLoop" block="loop play all the MP3s in the SD card"
-    //% weight=75 blockGap=20 
-    export function setLoop():void{
-        CMD=0x11
-        para1=0
-        para2=0x01
-        dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
-        checkSum()
-        sendData()
-    }
-
-    //% blockId="setLoopFolder" block="loop play all the MP3s in the folder:%folderNum"
-    //% weight=73 blockGap=20 folderNum.min=1 folderNum.max=99
-    export function setLoopFolder(folderNum:number):void{
-        CMD=0x17
-        para1=0
-        para2=folderNum
-        dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
-        checkSum()
-        sendData()
-    }
-
-
-    //% blockId="setVolume" block="set volume(0~48):%volume"
-    //% weight=70 blockGap=20 volume.min=0 volume.max=48
+    //% blockId="setVolume" block="set volume(0~30):%volume"
+    //% weight=70 blockGap=20 volume.min=0 volume.max=30
     export function setVolume(volume:number):void{
-        CMD=0x06
-        para1=0
-        para2=volume
-        dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
-        checkSum()
-        sendData()
+        //volume 0-30【7E 03 06 15 EF】
+            CMD_Bytes_Count = 0x03
+            CMD             = 0x06
+            highByte        = volume //set volume 0-30
+            lowByte         = 0xEF
+            dataArr[1] = CMD_Bytes_Count
+            dataArr[2] = CMD
+            dataArr[3] = highByte
+            dataArr[4] = lowByte
+            //checkSum()
+            sendData()
     }
 
     function sendData():void{
