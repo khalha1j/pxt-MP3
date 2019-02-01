@@ -16,7 +16,8 @@ The blocks can let you attch JQ6500 to micro:bit, let the micro:bit play MP3 fil
 
 ## The filesystem in the microSD card
 ![image](images/filesystem.jpg)
-
+![image](pinkyo.png)
+![image](icon.png)
 ## The MP3 player blocks
 ................
 
