@@ -1,8 +1,8 @@
+
 {
     "name": "pinkyo",
-    "version": "0.0.1",
-    "description": "JQ6500 mp3 Player Controller.",
-    "icon": "./icon.png",
+    "version": "0.0.0",
+    "description": "MP3 Player package for the JQ6500",
     "license": "MIT",
     "dependencies": {
         "core": "*"
