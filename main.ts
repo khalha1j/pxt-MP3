@@ -34,6 +34,29 @@ namespace pinkyo {
         //% block="Pause"
         type5 = 0x0E
     }
+    
+        export enum queryType {
+        //% block="Status"
+        type1 = 0x42,
+        //% block="Volume"
+        type2 = 0x43,
+        //% block="EQ"
+        type3 = 0x44,
+        //% block="PlayMode"
+        type4 = 0x45,
+        //% block="SoftwareVersion"
+        type5 = 0x46
+        //% block="TotalFlashFiles"
+        type4 = 0x49,
+        //% block="currentFlashTrack"
+        type5 = 0x4D,
+        //% block="currentPlayTime"
+        type5 = 0x50,
+        //% block="totalPlayTimeCurrentTrack"
+        type5 = 0x51,
+        //% block="nameOfPlayingFile"
+        type5 = 0x52        
+    }
 
     export enum yesOrNot {
         //% block="no"
@@ -64,6 +87,25 @@ namespace pinkyo {
         dataArr[7]=highByte
         dataArr[8]=lowByte
     }
+
+//% blockId="getInfo" block="get info:%myQuery"
+//% weight=90 blockExternalInputs=true blockGap=20
+export function getInfo(myQuery: queryType):void{
+    //length of dataArr for this function is always 4 bytes ==> Get Volume:【7E 02 43 EF】
+
+        Start_Byte = 0x7E
+        CMD_Bytes_Count = 0x02
+        CMD=myQuery
+        End_Byte = 0xEF
+        dataArr[0]=Start_Byte
+        dataArr[1]=CMD_Bytes_Count
+        dataArr[2]=CMD
+        dataArr[3]=End_Byte
+        sendData()
+    }
+    
+    
+    
     
 //% blockId="execute" block="execute procedure:%myType"
 //% weight=90 blockExternalInputs=true blockGap=20
