@@ -96,20 +96,31 @@ export function execute(myType: playType):void{
     export function setTracking(tracking:number,myAns:yesOrNot):void{
         //    let dataArr: number[] = [Start_Byte, CMD_Bytes_Count, CMD, highByte, lowByte, End_Byte]
         //【7E 04 03 00 01 EF】
-
+        
+        if (myAns==1){//first set loop mode to single song 【7E 04 03 00 02 EF】
+            CMD_Bytes_Count = 0x04
+            CMD             = 0x03
+            highByte        = 0x00
+            lowByte         = 0x02 //set loop mode to single song
+            dataArr[1] = CMD_Bytes_Count
+            dataArr[2] = CMD
+            dataArr[3] = highByte
+            dataArr[4] = lowByte
+            //checkSum()
+            sendData()
+        }
         CMD_Bytes_Count = 0x04
-        CMD=0x03
-        highByte=0x00
-        lowByte=tracking
-        dataArr[1]=CMD_Bytes_Count
-        dataArr[2]=CMD
-        dataArr[3] = highByte
-        dataArr[4] = lowByte
+        CMD             = 0x03
+        highByte        = 0x00
+        lowByte         = tracking
+        dataArr[1]      = CMD_Bytes_Count
+        dataArr[2]      = CMD
+        dataArr[3]      = highByte
+        dataArr[4]      = lowByte
         //checkSum()
         sendData()
         execute(0x0D)
-        //if (myAns==1)
-        //   execute(0x19)
+        
     }
 
 
