@@ -1,7 +1,7 @@
 
 {
     "name": "pinkyo",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "MP3 Player package for the JQ6500",
     "license": "MIT",
     "dependencies": {
