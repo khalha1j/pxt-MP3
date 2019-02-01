@@ -121,6 +121,7 @@ export function execute(myType: playType):void{
             //checkSum()
             sendData()
         }
+        //【7E 04 03 00 02 EF】  
         CMD_Bytes_Count = 0x04
         CMD             = 0x03
         highByte        = 0x00
@@ -129,9 +130,11 @@ export function execute(myType: playType):void{
         dataArr[2]      = CMD
         dataArr[3]      = highByte
         dataArr[4]      = lowByte
+        dataArr[5]      = 0xEF
         //checkSum()
         sendData()
-        execute(0x0D)
+        //basic.pause(50)
+        //execute(0x0D)
         
     }
 
