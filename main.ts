@@ -45,7 +45,7 @@ namespace pinkyo {
         //% block="PlayMode"
         type4 = 0x45,
         //% block="SoftwareVersion"
-        type5 = 0x46
+        type5 = 0x46,
         //% block="TotalFlashFiles"
         type4 = 0x49,
         //% block="currentFlashTrack"
