@@ -9,16 +9,14 @@ namespace dfplayer {
     })
     let Start_Byte = 0x7E
     let Version_Byte = 0xFF
-    let Command_Length = 0x06
+    let Bytes_Follow_Count = 0x06
     let End_Byte = 0xEF
     let Acknowledge = 0x00
     let CMD=0x00
-    let para1=0x00
-    let para2=0x00
-    let highByte=0x00
-    let lowByte=0x00
-    let dataArr: number[] = [0x7E, 0x02, CMD, 0xEF]
-    //let dataArr: number[] = [Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge, para1, para2, highByte, lowByte, End_Byte]
+    let paraHighByte=0x00
+    let paraLowByte=0x00
+    //let dataArr: number[] = [0x7E, 0x02, CMD, 0xEF]
+    let dataArr: number[] = [Start_Byte, Bytes_Follow_Count, CMD, paraHighByte, paraLowByte, End_Byte]
 
     
     export enum playType {
@@ -58,10 +56,10 @@ namespace dfplayer {
             total+=dataArr[i]
         }
         total=65536 - total
-        lowByte = total & 0xFF;
-        highByte = total >> 8;
-        dataArr[7]=highByte
-        dataArr[8]=lowByte
+        paraLowByte = total & 0xFF;
+        paraHighByte = total >> 8;
+        dataArr[7]=paraHighByte
+        dataArr[8]=paraLowByte
     }
     //% blockId="execute" block="execute procedure:%myType"
     //% weight=90 blockExternalInputs=true blockGap=20
@@ -79,8 +77,18 @@ namespace dfplayer {
     */
 export function execute(myType: playType):void{
     //length of dataArr for this function is always 4 bytes ==> [0x7E, 0x02, playType, 0xEF]
+    //dataArr: number[] = [Start_Byte, Bytes_Follow_Count, CMD, paraHighByte, paraLowByte, End_Byte]
+
+        Bytes_Follow_Count = 0x02
         CMD=myType
+        paraHighByte = 0xEF
+        paraLowByte = 0xEF
+        End_Byte = 0xEF
+    
+        dataArr[1]=Bytes_Follow_Count
         dataArr[2]=CMD
+        dataArr[3]=End_Byte
+        dataArr[4]=End_Byte
         sendData()
     }
     
@@ -93,11 +101,12 @@ export function execute(myType: playType):void{
         dataArr[3]=CMD
         dataArr[5] = para1
         dataArr[6] = para2
-        checkSum()
+        //checkSum()
         sendData()
         execute(0x0D)
-        if (myAns==1)
+        /*if (myAns==1)
            execute(0x19)
+           */
     }
 
 
