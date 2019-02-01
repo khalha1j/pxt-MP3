@@ -52,14 +52,14 @@ namespace pinkyo {
 
     function checkSum():void {
         let total=0;
-        for(let i=1;i<7;i++){
+        for(let i=1;i<6;i++){
             total+=dataArr[i]
         }
         total=65536 - total
         paraLowByte = total & 0xFF;
         paraHighByte = total >> 8;
-        dataArr[7]=paraHighByte
-        dataArr[8]=paraLowByte
+        dataArr[4]=paraHighByte
+        dataArr[5]=paraLowByte
     }
     //% blockId="execute" block="execute procedure:%myType"
     //% weight=90 blockExternalInputs=true blockGap=20
