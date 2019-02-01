@@ -47,15 +47,15 @@ namespace pinkyo {
         //% block="SoftwareVersion"
         type5 = 0x46,
         //% block="TotalFlashFiles"
-        type4 = 0x49,
+        type6 = 0x49,
         //% block="currentFlashTrack"
-        type5 = 0x4D,
+        type7 = 0x4D,
         //% block="currentPlayTime"
-        type5 = 0x50,
+        type8 = 0x50,
         //% block="totalPlayTimeCurrentTrack"
-        type5 = 0x51,
+        type9 = 0x51,
         //% block="nameOfPlayingFile"
-        type5 = 0x52        
+        type10 = 0x52        
     }
 
     export enum yesOrNot {
