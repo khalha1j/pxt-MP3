@@ -66,11 +66,11 @@ namespace dfplayer {
     /*
     export function execute(myType: playType):void{
         CMD=myType
-        para1=0x00
-        para2=0x00
+        paraHighByte=0x00
+        paraLowByte=0x00
         dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
+        dataArr[5] = paraHighByte
+        dataArr[6] = paraLowByte
         checkSum()
         sendData()
     }
@@ -96,11 +96,11 @@ export function execute(myType: playType):void{
     //% weight=85 blockGap=20 tracking.min=1 tracking.max=255
     export function setTracking(tracking:number,myAns:yesOrNot):void{
         CMD=0x03
-        para1=0x00
-        para2=tracking
+        paraHighByte=0x00
+        paraLowByte=tracking
         dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
+        dataArr[5] = paraHighByte
+        dataArr[6] = paraLowByte
         //checkSum()
         sendData()
         execute(0x0D)
@@ -114,11 +114,11 @@ export function execute(myType: playType):void{
     //% weight=80 blockGap=20 folderNum.min=1 folderNum.max=99 fileNum.min=1 fileNum.max=255
     export function folderPlay(folderNum:number, fileNum:number,myAns:yesOrNot):void{
         CMD=0x0F
-        para1=folderNum
-        para2=fileNum
+        paraHighByte=folderNum
+        paraLowByte=fileNum
         dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
+        dataArr[5] = paraHighByte
+        dataArr[6] = paraLowByte
         checkSum()
         sendData()
         if (myAns==1)
@@ -129,11 +129,11 @@ export function execute(myType: playType):void{
     //% weight=75 blockGap=20 
     export function setLoop():void{
         CMD=0x11
-        para1=0
-        para2=0x01
+        paraHighByte=0
+        paraLowByte=0x01
         dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
+        dataArr[5] = paraHighByte
+        dataArr[6] = paraLowByte
         checkSum()
         sendData()
     }
@@ -142,11 +142,11 @@ export function execute(myType: playType):void{
     //% weight=73 blockGap=20 folderNum.min=1 folderNum.max=99
     export function setLoopFolder(folderNum:number):void{
         CMD=0x17
-        para1=0
-        para2=folderNum
+        paraHighByte=0
+        paraLowByte=folderNum
         dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
+        dataArr[5] = paraHighByte
+        dataArr[6] = paraLowByte
         checkSum()
         sendData()
     }
@@ -156,11 +156,11 @@ export function execute(myType: playType):void{
     //% weight=70 blockGap=20 volume.min=0 volume.max=48
     export function setVolume(volume:number):void{
         CMD=0x06
-        para1=0
-        para2=volume
+        paraHighByte=0
+        paraLowByte=volume
         dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
+        dataArr[5] = paraHighByte
+        dataArr[6] = paraLowByte
         checkSum()
         sendData()
     }
@@ -168,6 +168,14 @@ export function execute(myType: playType):void{
     function sendData():void{
         let myBuff = pins.createBuffer(6);
         for(let i=0;i<6;i++){
+            myBuff.setNumber(NumberFormat.UInt8BE, i, dataArr[i])           
+        }
+        serial.writeBuffer(myBuff)
+        basic.pause(100)
+    }
+    function sendData(bytesCount:number):void{
+        let myBuff = pins.createBuffer(bytesCount);
+        for(let i=0;i<bytesCount;i++){
             myBuff.setNumber(NumberFormat.UInt8BE, i, dataArr[i])           
         }
         serial.writeBuffer(myBuff)
