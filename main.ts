@@ -1,22 +1,24 @@
 /**
-* JQ6500 MP3 Player
+* DFPlayer mini的函數
 */
 
 
-//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-HAK3"
-namespace pinkyo {
+//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player-HA"
+namespace dfplayer {
     serial.onDataReceived("E", () => {
     })
     let Start_Byte = 0x7E
     let Version_Byte = 0xFF
-    let Bytes_Follow_Count = 0x06
+    let Command_Length = 0x06
     let End_Byte = 0xEF
     let Acknowledge = 0x00
     let CMD=0x00
-    let paraHighByte=0x00
-    let paraLowByte=0x00
-    //let dataArr: number[] = [0x7E, 0x02, CMD, 0xEF]
-    let dataArr: number[] = [Start_Byte, Bytes_Follow_Count, CMD, paraHighByte, paraLowByte, End_Byte]
+    let para1=0x00
+    let para2=0x00
+    let highByte=0x00
+    let lowByte=0x00
+    let dataArr: number[] = [0x7E, 0x02, CMD, 0xEF]
+    //let dataArr: number[] = [Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge, para1, para2, highByte, lowByte, End_Byte]
 
     
     export enum playType {
@@ -52,43 +54,33 @@ namespace pinkyo {
 
     function checkSum():void {
         let total=0;
-        for(let i=1;i<6;i++){
+        for(let i=1;i<7;i++){
             total+=dataArr[i]
         }
         total=65536 - total
-        paraLowByte = total & 0xFF;
-        paraHighByte = total >> 8;
-        dataArr[4]=paraHighByte
-        dataArr[5]=paraLowByte
+        lowByte = total & 0xFF;
+        highByte = total >> 8;
+        dataArr[7]=highByte
+        dataArr[8]=lowByte
     }
     //% blockId="execute" block="execute procedure:%myType"
     //% weight=90 blockExternalInputs=true blockGap=20
     /*
     export function execute(myType: playType):void{
         CMD=myType
-        paraHighByte=0x00
-        paraLowByte=0x00
+        para1=0x00
+        para2=0x00
         dataArr[3]=CMD
-        dataArr[5] = paraHighByte
-        dataArr[6] = paraLowByte
+        dataArr[5] = para1
+        dataArr[6] = para2
         checkSum()
         sendData()
     }
     */
 export function execute(myType: playType):void{
     //length of dataArr for this function is always 4 bytes ==> [0x7E, 0x02, playType, 0xEF]
-    //dataArr: number[] = [Start_Byte, Bytes_Follow_Count, CMD, paraHighByte, paraLowByte, End_Byte]
-
-        Bytes_Follow_Count = 0x02
         CMD=myType
-        paraHighByte = 0xEF
-        paraLowByte = 0xEF
-        End_Byte = 0xEF
-    
-        dataArr[1]=Bytes_Follow_Count
         dataArr[2]=CMD
-        dataArr[3]=End_Byte
-        dataArr[4]=End_Byte
         sendData()
     }
     
@@ -96,17 +88,16 @@ export function execute(myType: playType):void{
     //% weight=85 blockGap=20 tracking.min=1 tracking.max=255
     export function setTracking(tracking:number,myAns:yesOrNot):void{
         CMD=0x03
-        paraHighByte=0x00
-        paraLowByte=tracking
-        dataArr[2]=CMD
-        dataArr[4] = paraHighByte
-        dataArr[5] = paraLowByte
-        //checkSum()
+        para1=0x00
+        para2=tracking
+        dataArr[3]=CMD
+        dataArr[5] = para1
+        dataArr[6] = para2
+        checkSum()
         sendData()
         execute(0x0D)
-        /*if (myAns==1)
+        if (myAns==1)
            execute(0x19)
-           */
     }
 
 
@@ -114,11 +105,11 @@ export function execute(myType: playType):void{
     //% weight=80 blockGap=20 folderNum.min=1 folderNum.max=99 fileNum.min=1 fileNum.max=255
     export function folderPlay(folderNum:number, fileNum:number,myAns:yesOrNot):void{
         CMD=0x0F
-        paraHighByte=folderNum
-        paraLowByte=fileNum
-        dataArr[2]=CMD
-        dataArr[4] = paraHighByte
-        dataArr[5] = paraLowByte
+        para1=folderNum
+        para2=fileNum
+        dataArr[3]=CMD
+        dataArr[5] = para1
+        dataArr[6] = para2
         checkSum()
         sendData()
         if (myAns==1)
@@ -129,11 +120,11 @@ export function execute(myType: playType):void{
     //% weight=75 blockGap=20 
     export function setLoop():void{
         CMD=0x11
-        paraHighByte=0
-        paraLowByte=0x01
-        dataArr[2]=CMD
-        dataArr[4] = paraHighByte
-        dataArr[5] = paraLowByte
+        para1=0
+        para2=0x01
+        dataArr[3]=CMD
+        dataArr[5] = para1
+        dataArr[6] = para2
         checkSum()
         sendData()
     }
@@ -142,11 +133,11 @@ export function execute(myType: playType):void{
     //% weight=73 blockGap=20 folderNum.min=1 folderNum.max=99
     export function setLoopFolder(folderNum:number):void{
         CMD=0x17
-        paraHighByte=0
-        paraLowByte=folderNum
-        dataArr[2]=CMD
-        dataArr[4] = paraHighByte
-        dataArr[5] = paraLowByte
+        para1=0
+        para2=folderNum
+        dataArr[3]=CMD
+        dataArr[5] = para1
+        dataArr[6] = para2
         checkSum()
         sendData()
     }
@@ -156,11 +147,11 @@ export function execute(myType: playType):void{
     //% weight=70 blockGap=20 volume.min=0 volume.max=48
     export function setVolume(volume:number):void{
         CMD=0x06
-        paraHighByte=0
-        paraLowByte=volume
-        dataArr[2]=CMD
-        dataArr[4] = paraHighByte
-        dataArr[5] = paraLowByte
+        para1=0
+        para2=volume
+        dataArr[3]=CMD
+        dataArr[5] = para1
+        dataArr[6] = para2
         checkSum()
         sendData()
     }
@@ -168,14 +159,6 @@ export function execute(myType: playType):void{
     function sendData():void{
         let myBuff = pins.createBuffer(6);
         for(let i=0;i<6;i++){
-            myBuff.setNumber(NumberFormat.UInt8BE, i, dataArr[i])           
-        }
-        serial.writeBuffer(myBuff)
-        basic.pause(100)
-    }
-    function sendData(bytesCount:number):void{
-        let myBuff = pins.createBuffer(bytesCount);
-        for(let i=0;i<bytesCount;i++){
             myBuff.setNumber(NumberFormat.UInt8BE, i, dataArr[i])           
         }
         serial.writeBuffer(myBuff)
