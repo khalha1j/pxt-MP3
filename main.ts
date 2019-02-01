@@ -91,12 +91,12 @@ export function execute(myType: playType):void{
         //    let dataArr: number[] = [Start_Byte, CMD_Bytes_Count, CMD, highByte, lowByte, End_Byte]
         CMD=0x03
         CMD_Bytes_Count = 0x04
-        para1=0x00
-        para2=tracking
+        highByte=0x00
+        lowByte=tracking
         dataArr[1]=CMD_Bytes_Count
-        dataArr[3]=CMD
-        dataArr[4] = para1
-        dataArr[5] = para2
+        dataArr[2]=CMD
+        dataArr[4] = highByte
+        dataArr[5] = lowByte
         //checkSum()
         sendData()
         execute(0x0D)
