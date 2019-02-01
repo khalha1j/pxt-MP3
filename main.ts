@@ -18,7 +18,7 @@ namespace pinkyo {
     let para2=0x00
     let highByte=0x00
     let lowByte=0x00
-    let dataArr: number[] = [Start_Byte, CMD_Follow_Bytes_Count, CMD, End_Byte]
+    let dataArr: number[] = [Start_Byte, CMD_Follow_Bytes_Count, CMD, highByte, lowByte, End_Byte]
     //let dataArr: number[] = [Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge, para1, para2, highByte, lowByte, End_Byte]
 
     
