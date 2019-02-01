@@ -95,13 +95,14 @@ export function execute(myType: playType):void{
     //% weight=85 blockGap=20 tracking.min=1 tracking.max=255
     export function setTracking(tracking:number,myAns:yesOrNot):void{
         //    let dataArr: number[] = [Start_Byte, CMD_Bytes_Count, CMD, highByte, lowByte, End_Byte]
-        //【7E 04 03 00 01 EF】
+        
+        //set loop:【7E 03 11 01 EF】 --> play file:【7E 04 03 00 02 EF】
         
         if (myAns==1){//first set loop mode to single song 【7E 04 03 00 02 EF】
-            CMD_Bytes_Count = 0x04
-            CMD             = 0x03
-            highByte        = 0x00
-            lowByte         = 0x02 //set loop mode to single song
+            CMD_Bytes_Count = 0x03
+            CMD             = 0x11
+            highByte        = 0x02
+            lowByte         = 0xEF //set loop mode to single song
             dataArr[1] = CMD_Bytes_Count
             dataArr[2] = CMD
             dataArr[3] = highByte
