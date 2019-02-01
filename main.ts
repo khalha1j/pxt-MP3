@@ -80,8 +80,14 @@ namespace pinkyo {
     */
 export function execute(myType: playType):void{
     //length of dataArr for this function is always 4 bytes ==> [0x7E, 0x02, playType, 0xEF]
+        Start_Byte = 0x7E
+        CMD_Bytes_Count = 0x02
         CMD=myType
+        End_Byte = 0xEF
+        dataArr[0]=Start_Byte
+        dataArr[1]=CMD_Bytes_Count
         dataArr[2]=CMD
+        dataArr[3]=End_Byte
         sendData()
     }
     
