@@ -98,9 +98,9 @@ export function execute(myType: playType):void{
         CMD=0x03
         paraHighByte=0x00
         paraLowByte=tracking
-        dataArr[3]=CMD
-        dataArr[5] = paraHighByte
-        dataArr[6] = paraLowByte
+        dataArr[2]=CMD
+        dataArr[4] = paraHighByte
+        dataArr[5] = paraLowByte
         //checkSum()
         sendData()
         execute(0x0D)
@@ -116,9 +116,9 @@ export function execute(myType: playType):void{
         CMD=0x0F
         paraHighByte=folderNum
         paraLowByte=fileNum
-        dataArr[3]=CMD
-        dataArr[5] = paraHighByte
-        dataArr[6] = paraLowByte
+        dataArr[2]=CMD
+        dataArr[4] = paraHighByte
+        dataArr[5] = paraLowByte
         checkSum()
         sendData()
         if (myAns==1)
@@ -131,9 +131,9 @@ export function execute(myType: playType):void{
         CMD=0x11
         paraHighByte=0
         paraLowByte=0x01
-        dataArr[3]=CMD
-        dataArr[5] = paraHighByte
-        dataArr[6] = paraLowByte
+        dataArr[2]=CMD
+        dataArr[4] = paraHighByte
+        dataArr[5] = paraLowByte
         checkSum()
         sendData()
     }
@@ -144,9 +144,9 @@ export function execute(myType: playType):void{
         CMD=0x17
         paraHighByte=0
         paraLowByte=folderNum
-        dataArr[3]=CMD
-        dataArr[5] = paraHighByte
-        dataArr[6] = paraLowByte
+        dataArr[2]=CMD
+        dataArr[4] = paraHighByte
+        dataArr[5] = paraLowByte
         checkSum()
         sendData()
     }
@@ -158,9 +158,9 @@ export function execute(myType: playType):void{
         CMD=0x06
         paraHighByte=0
         paraLowByte=volume
-        dataArr[3]=CMD
-        dataArr[5] = paraHighByte
-        dataArr[6] = paraLowByte
+        dataArr[2]=CMD
+        dataArr[4] = paraHighByte
+        dataArr[5] = paraLowByte
         checkSum()
         sendData()
     }
