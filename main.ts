@@ -92,13 +92,13 @@ export function execute(myType: playType):void{
         para1=0x00
         para2=tracking
         dataArr[3]=CMD
-        dataArr[5] = para1
-        dataArr[6] = para2
-        checkSum()
+        dataArr[4] = para1
+        dataArr[5] = para2
+        //checkSum()
         sendData()
         execute(0x0D)
-        if (myAns==1)
-           execute(0x19)
+        //if (myAns==1)
+        //   execute(0x19)
     }
 
 
