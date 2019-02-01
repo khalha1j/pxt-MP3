@@ -101,8 +101,19 @@ export function execute(myType: playType):void{
         if (myAns==1){//first set loop mode to single song 【7E 04 03 00 02 EF】
             CMD_Bytes_Count = 0x03
             CMD             = 0x11
-            highByte        = 0x02
-            lowByte         = 0xEF //set loop mode to single song
+            highByte        = 0x02 //set loop mode to single song loop
+            lowByte         = 0xEF 
+            dataArr[1] = CMD_Bytes_Count
+            dataArr[2] = CMD
+            dataArr[3] = highByte
+            dataArr[4] = lowByte
+            //checkSum()
+            sendData()
+        }else{//first set loop mode to single play then stop 【7E 04 03 00 04 EF】
+            CMD_Bytes_Count = 0x03
+            CMD             = 0x11
+            highByte        = 0x04 //set loop mode to single play then stop
+            lowByte         = 0xEF
             dataArr[1] = CMD_Bytes_Count
             dataArr[2] = CMD
             dataArr[3] = highByte
