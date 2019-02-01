@@ -1,20 +1,21 @@
 # PXT MP3 - JQ6500
 Datasheet (English): http://saber.patagoniatec.com/wp-content/uploads/2014/09/JQ6500-voice-Module.pdf
 This is the package to play MP3 by using micro:bit attached JQ6500
-
+https://sparks.gogo.co.nz/jq6500/serial.html
+Datasheet (Chinese with colors): http://sparks.gogo.co.nz/assets/_site_/downloads/jq6500.pdf
 ## Developed By
 Husain Al-Khalaf
 
 ## Description
 The blocks can let you attch JQ6500 to micro:bit, let the micro:bit play MP3 files (music, effects, ...etc).
 
-## Video1
+## Video
 .............
 
 ## Circuit
 ...........
 
-## The filesystem in the microSD card
+## The filesystem 
 ![image](images/filesystem.jpg)
 ![image](pinkyo.png)
 ![image](icon.png)
