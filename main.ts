@@ -10,7 +10,7 @@ namespace pinkyo {
     let Start_Byte = 0x7E
     let Version_Byte = 0xFF
     let Command_Length = 0x06
-    let CMD_Follow_Bytes_Count = 0x02
+    let CMD_Bytes_Count = 0x02
     let End_Byte = 0xEF
     let Acknowledge = 0x00
     let CMD=0x00
@@ -18,7 +18,7 @@ namespace pinkyo {
     let para2=0x00
     let highByte=0x00
     let lowByte=0x00
-    let dataArr: number[] = [Start_Byte, CMD_Follow_Bytes_Count, CMD, highByte, lowByte, End_Byte]
+    let dataArr: number[] = [Start_Byte, CMD_Bytes_Count, CMD, highByte, lowByte, End_Byte]
     //let dataArr: number[] = [Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge, para1, para2, highByte, lowByte, End_Byte]
 
     
@@ -88,9 +88,12 @@ export function execute(myType: playType):void{
     //% blockId="setTracking" block="play the mp3 on the track:%tracking|repeat:%myAns"
     //% weight=85 blockGap=20 tracking.min=1 tracking.max=255
     export function setTracking(tracking:number,myAns:yesOrNot):void{
+        //    let dataArr: number[] = [Start_Byte, CMD_Bytes_Count, CMD, highByte, lowByte, End_Byte]
         CMD=0x03
+        CMD_Bytes_Count = 0x04
         para1=0x00
         para2=tracking
+        dataArr[1]=CMD_Bytes_Count
         dataArr[3]=CMD
         dataArr[4] = para1
         dataArr[5] = para2
